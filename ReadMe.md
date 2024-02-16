@@ -14,7 +14,7 @@ telegram: https://t.me/s_i_shevchenko
 - установить виртуальное окружение `python3 -m venv venv`  
 - включить виртуальное окружение 
     - linux: `source venv/bin/activate`
-    - Windows: `venv/script/activate`
+    - Windows: `venv\scripts\activate`
 - установить зависимости `pip install -r requirements.txt`  
 - запустить `python3 main.py`  
 
