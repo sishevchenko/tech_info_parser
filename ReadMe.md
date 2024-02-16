@@ -1,7 +1,7 @@
 ---
 Author: sishevchenko
 GitHub: https://github.com/sishevchenko
-telegram: @s_i_shevchenko
+telegram: https://t.me/s_i_shevchenko
 ---
 
 # Парсер информации из pdf файлов  
