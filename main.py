@@ -18,7 +18,7 @@ def parse_pdf(pdf_files: list) -> list:
         with pdfplumber.open(file) as pdf:
             page = pdf.pages[0]
             table = page.extract_table() 
-        tables.append(list(filter(lambda row: all(row), table[1:-1])))
+        tables.append(list(filter(lambda row: all(row), table)))
     return tables
 
 def update_db() -> None:
@@ -34,7 +34,7 @@ def update_db() -> None:
             )
 
 def main() -> None:
-    with sqlite3.connect(BASE_DIR / 'product_information.db') as conn:
+    with sqlite3.connect(BASE_DIR/"product_information.db") as conn:
         # Проверяем наличие таблицы в БД
         is_exist = conn.execute(
                 """SELECT name
