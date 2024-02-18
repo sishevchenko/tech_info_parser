@@ -16,9 +16,10 @@ def parse_pdf(pdf_files: list) -> list:
     tables = []
     for file in pdf_files:
         with pdfplumber.open(file) as pdf:
-            page = pdf.pages[0]
-            table = page.extract_table() 
-        tables.append(list(filter(lambda row: all(row), table)))
+            all_rows = []
+            for page in pdf.pages:
+                all_rows = all_rows + page.extract_table()
+        tables.append(list(filter(lambda row: all(row), all_rows)))
     return tables
 
 def update_db() -> None:
@@ -46,7 +47,7 @@ def main() -> None:
         else:
             conn.execute(
                 f"""CREATE TABLE product_information (
-                id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 {TABLE_COLUMNS[0]} TEXT NULL,
                 {TABLE_COLUMNS[1]} VARCHAR(50) NULL,
                 {TABLE_COLUMNS[2]} VARCHAR(15) NULL,
